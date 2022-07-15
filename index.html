@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Interpreter</title>
+    <link rel="icon" type="image/x-icon" href="logo.png" />
+    <script>
+        function init() {
+            page = document.getElementById("page");
+            code = document.getElementById("code");
+            exitButton = document.getElementById("exitButton");
+            fullscreen = document.getElementById("fullscreen");
+
+            page.style.display = "block";
+            code.style.display = "block";
+            exitButton.style.display = "none";
+            fullscreen.style.display = "block";
+
+            page.style.width = "56%";
+            page.style.left = "43%";
+            fullscreen.style.left = "29%";
+        }
+        function interpreter() {
+            if (code.value != "") {
+                page.srcdoc = code.value;
+            }
+            else {
+                page.srcdoc = "<h3>Output will appear here....</h3>";
+            }
+        }
+
+        function goFullScreen() {
+            fullscreen.style.left = "-230px";
+            page.style.width = "99%";
+            page.style.left = "0px";
+
+            exitButton.style.display = "block";
+        }
+    </script>
+    <style>
+        body {
+            background: black;
+            color: white;
+        }
+
+        #logo {
+            display: block;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            margin: 0px;
+        }
+
+        #fullscreen {
+            display: block;
+            position: absolute;
+            bottom: 1%;
+            left: 29%;
+            margin: 0px;
+            padding-left: 9px;
+            cursor: pointer;
+            transition-duration: 500ms;
+            transition-timing-function: ease-out;
+        }
+
+        #heading {
+            font-size: 50px;
+            position: absolute;
+            top: 0%;
+            left: 7%;
+            font-weight: bold;
+        }
+
+        #code {
+            position: absolute;
+            border: 5px solid black;
+            border-radius: 15px;
+            top: 10%;
+            left: 1%;
+            width: 40%;
+            height: 75%;
+            font-size: 20px;
+            size: fixed;
+            padding: 5px;
+            resize: none;
+        }
+
+        #code:focus {
+            border: 10px groove blue;
+        }
+
+        #page {
+            position: absolute;
+            top: 0%;
+            left: 43%;
+            width: 56%;
+            height: 99%;
+            padding-left: 2px;
+            background-color: white;
+            color: black;
+            overflow: hidden;
+            transition-duration: 500ms;
+            transition-timing-function: ease-out;
+        }
+
+        #exitButton {
+            display: "none";
+            background: none;
+            color: black;
+            position: absolute;
+            width: 75px;
+            height: 50px;
+            top: 0%;
+            right: 0%;
+        }
+    </style>
+
+</head>
+
+<body onload="init()">
+    <div id="logo"><img src="logo.png" height="60px" /></div>
+    <div id="heading"> HTML Interpreter </div>
+
+    <textarea id="code" onkeyup="interpreter()"><!-- Write Code Here --></textarea>
+
+    <div id="fullscreen"><img src="fullscreen.png" onclick="goFullScreen()" width="210px" /></div>
+    <iframe id="page" srcdoc="<h3>Output will appear here....</h3>"></iframe>
+    <button id="exitButton" onclick="init()">Exit Full Screen</button>
+
+</body>
+
+</html>
